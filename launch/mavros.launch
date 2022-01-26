@@ -30,7 +30,7 @@
         
         <!-- vehicle model and world -->
         <arg name="est" default="ekf2"/>
-        <arg name="vehicle" default="iris_depth_camera"/>
+        <arg name="vehicle" default="iris"/>
         <arg name="world" default="$(find px4_fast_planner)/worlds/outdoor_village.world"/>
         <arg name="sdf" default="$(find px4_fast_planner)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 
