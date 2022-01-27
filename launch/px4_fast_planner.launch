@@ -34,7 +34,7 @@
     <!-- MAVROS + PX4 + Gazebo -->
 
     <include file="$(find px4_fast_planner)/launch/mavros.launch" >
-        <arg name="use_gazebo" value="$(arg use_gazebo)"/>
+        <!-- <arg name="use_gazebo" value="$(arg use_gazebo)"/> -->
         <arg name="fcu_url" value="$(arg fcu_url)"/>
         <arg name="x" value="$(arg init_pos_x)"/>
         <arg name="y" value="$(arg init_pos_y)"/>
