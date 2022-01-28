@@ -17,13 +17,13 @@
     <arg name="depth_topic" default="/camera/depth/image_raw"/>
 
     <arg name="max_vel" default="1.0" />
-    <arg name="max_acc" default="2.5" />
+    <arg name="max_acc" default="1.5" />
 
     <!-- Initial drone's position in Gazebo -->
-    <arg name="init_pos_x" default="5.0" />
-    <arg name="init_pos_y" default="0.0" />
+    <arg name="init_pos_x" default="-2.0" />
+    <arg name="init_pos_y" default="-0.5" />
     <!-- takeoff height -->
-    <arg name="takeoff_height" default="1.0" />
+    <arg name="takeoff_height" default="1.5" />
 
     <!-- ROS static transformation -->
     <node pkg="tf" type="static_transform_publisher" name="world_map_linker" args="0 0 0 0 0 0 world map 100" />
@@ -68,11 +68,11 @@
     <include file="$(find px4_fast_planner)/launch/geometric_controller.launch">
         <arg name="gazebo_simulation" value="$(arg use_gazebo)" />
         <arg name="max_acc" value="$(arg max_acc)" />
-        <param name="Kp_x" value="6.0" />
-        <param name="Kp_y" value="6.0" />
-        <param name="Kp_z" value="10.0" />
-        <param name="Kv_x" value="1.5" />
-        <param name="Kv_y" value="1.5" />
+        <param name="Kp_x" value="10.0" />
+        <param name="Kp_y" value="10.0" />
+        <param name="Kp_z" value="25.0" />
+        <param name="Kv_x" value="2.0" />
+        <param name="Kv_y" value="2.0" />
         <param name="Kv_z" value="3.5" />
         <arg name="init_pos_x" value="0.0" />
         <arg name="init_pos_y" value="0.0" />
@@ -82,10 +82,10 @@
     <!-- Camera pose publisher -->
     <!-- This node publishes tf from parent_frame to child_frame-->
     <node pkg="px4_fast_planner" name="camera_pose_publisher" type="camera_pose_publisher.py" output="screen">
-        <param name="parent_frame" value="world" />
-        <param name="child_frame" value="camera_link" />
-        <param name="pose_topic" value="camera/pose" />
-    </node>
+       <param name="parent_frame" value="world" />
+       <param name="child_frame" value="camera_link" />
+       <param name="pose_topic" value="camera/pose" />
+    </node> -->
 
     <node pkg="px4_fast_planner" name="traj_msg_converter" type="trajectory_msg_converter.py" output="screen">
         <param name="fast_planner_traj_topic" value="planning/ref_traj"/>
