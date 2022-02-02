@@ -23,7 +23,7 @@
     <arg name="init_pos_x" default="-2.0" />
     <arg name="init_pos_y" default="-0.5" />
     <!-- takeoff height -->
-    <arg name="takeoff_height" default="2.0" />
+    <arg name="takeoff_height" default="0.0" />
 
     <!-- ROS static transformation -->
     <node pkg="tf" type="static_transform_publisher" name="world_map_linker" args="0 0 0 0 0 0 world map 100" />
