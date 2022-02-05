@@ -12,11 +12,10 @@ class RepubMav():
     """
 
     def __init__(self):
-        # self.pub = rospy.Publisher('/mavros/vision_pose/pose', PoseStamped, queue_size=1)
+        self.pub = rospy.Publisher('/mavros/vision_pose/pose', PoseStamped, queue_size=1)
 
         # scan for any of the two topics published by opevnslam
-        found = False
-        while found == False:
+        while True:
             topics = rospy.get_published_topics()
             for topic, taip in topics:
                 if topic == '/run_localization/camera_pose' or topic == '/run_slam/camera_pose':

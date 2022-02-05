@@ -98,8 +98,8 @@
 
     <remap from="/camera/pose" to="/run_localization/camera_pose"/>
 
-	<node pkg="px4_fast_planner" name="republisher_from_openvslam" type="repub_mavros.py" output="screen" >
-	</node>
+	<!-- <node pkg="px4_fast_planner" name="republisher_from_openvslam" type="repub_mavros.py" output="screen" > -->
+	<!-- </node> -->
 
     
 </launch>
