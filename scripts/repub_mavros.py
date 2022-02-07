@@ -3,6 +3,7 @@
 import rospy
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped
+import tf
 
 
 class RepubMav():
@@ -34,6 +35,8 @@ class RepubMav():
 
     def repub(self, from_vslam: Odometry):
         output = PoseStamped()
+
+        tf.TransformBroadcaster.sendTransform(from_vslam.pose.pose.position, from_vslam.pose.pose.orientation, rospy.Time.now(), 'slam_pose', 'map')
 
         output.header = from_vslam.header
         output.header.stamp = rospy.Time.now()
