@@ -14,21 +14,23 @@ class RepubMav():
     def __init__(self):
         self.pub = rospy.Publisher('/mavros/vision_pose/pose', PoseStamped, queue_size=1)
 
+        # initialize boolean variable that registers is the sought topic has 
+        # been found
+        found = False
         # scan for any of the two topics published by opevnslam
-        while True:
+        while found == False:
             topics = rospy.get_published_topics()
             for topic, taip in topics:
                 if topic == '/run_localization/camera_pose' or topic == '/run_slam/camera_pose':
-                    self.sub = rospy.Subscriber(
-                        topic, Odometry, self.repub, queue_size=1)
-                    rospy.loginfo("found topic to translate")
-                    break
+                    self.sub = rospy.Subscriber( topic, Odometry, self.repub, queue_size=1)
+                    rospy.loginfo("found topic %s to translate",topic )
+                    found = True
                 else:
-                    rospy.loginfo("topics not found, yet")
-            rospy.sleep(0.1)
+                    #rospy.loginfo("topics not found, yet")
+                    rospy.sleep(0.1)
 
-        self.sub = rospy.Subscriber(
-            '/run_localization/camera_pose', Odometry, self.repub, queue_size=1)
+        self.sub = rospy.Subscriber('/run_localization/camera_pose', Odometry, self.repub, queue_size=1)
+        rospy.loginfo("subscriber to found topic created")
 
     def repub(self, from_vslam: Odometry):
         output = PoseStamped()
@@ -37,7 +39,6 @@ class RepubMav():
         output.header.stamp = rospy.Time.now()
         output.pose = from_vslam.pose.pose
         self.pub.publish(output)
-        rospy.loginfo("translated message has been published")
 
 
 if __name__ == "__main__":
