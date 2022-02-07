@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import rospy
+import numpy as np
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped
-import tf
 
 
 class RepubMav():
@@ -33,14 +33,24 @@ class RepubMav():
         self.sub = rospy.Subscriber('/run_localization/camera_pose', Odometry, self.repub, queue_size=1)
         rospy.loginfo("subscriber to found topic created")
 
-    def repub(self, from_vslam: Odometry):
+    def repub(self, from_vslam):
         output = PoseStamped()
 
-        tf.TransformBroadcaster.sendTransform(from_vslam.pose.pose.position, from_vslam.pose.pose.orientation, rospy.Time.now(), 'slam_pose', 'map')
+        pos = from_vslam.pose.pose.position
+
+        array = np.array([pos.x, pos.y, pos.z])
+        rot_matrice = np.array([[1,0,0], [0,-1,0], [0,0,-1]])
+        rotated = np.dot(rot_matrice, array)
 
         output.header = from_vslam.header
         output.header.stamp = rospy.Time.now()
-        output.pose = from_vslam.pose.pose
+
+        output.pose.position.x = rotated[0]
+        output.pose.position.y = rotated[1]
+        output.pose.position.z = rotated[2]
+
+        # output.pose.position = from_vslam.pose.pose.position
+
         self.pub.publish(output)
 
 

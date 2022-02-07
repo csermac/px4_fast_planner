@@ -17,7 +17,7 @@
 
     <!-- added from px4/posix_sitl.launch -->
     <!-- <env name="PX4_SIM_MODEL" value="$(arg vehicle)" /> -->
-    <env name="PX4_SIM_MODEL" value="iris_vision" />
+    <env name="PX4_SIM_MODEL" value="iris" />
     <env name="PX4_ESTIMATOR" value="$(arg est)" />
 
     <!-- gazebo configs -->
