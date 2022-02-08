@@ -19,15 +19,15 @@ class RepubMav():
         # been found
         found = False
         # scan for any of the two topics published by opevnslam
-        while found == False:
+        while not found:
             topics = rospy.get_published_topics()
             for topic, taip in topics:
                 if topic == '/run_localization/camera_pose' or topic == '/run_slam/camera_pose':
-                    self.sub = rospy.Subscriber( topic, Odometry, self.repub, queue_size=1)
-                    rospy.loginfo("found topic %s to translate",topic )
+                    self.sub = rospy.Subscriber(topic, Odometry, self.repub, queue_size=1)
+                    rospy.loginfo("found topic %s to translate", topic )
                     found = True
                 else:
-                    #rospy.loginfo("topics not found, yet")
+                    rospy.loginfo("topics not found, yet")
                     rospy.sleep(0.1)
 
         self.sub = rospy.Subscriber('/run_localization/camera_pose', Odometry, self.repub, queue_size=1)
@@ -38,18 +38,11 @@ class RepubMav():
 
         pos = from_vslam.pose.pose.position
 
-        array = np.array([pos.x, pos.y, pos.z])
-        rot_matrice = np.array([[1,0,0], [0,-1,0], [0,0,-1]])
-        rotated = np.dot(rot_matrice, array)
-
         output.header = from_vslam.header
         output.header.stamp = rospy.Time.now()
 
-        output.pose.position.x = rotated[0]
-        output.pose.position.y = rotated[1]
-        output.pose.position.z = rotated[2]
-
-        # output.pose.position = from_vslam.pose.pose.position
+        output.pose.position = from_vslam.pose.pose.position
+        output.pose.orientation = -from_vslam.pose.pose.orientation
 
         self.pub.publish(output)
 

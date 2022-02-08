@@ -2,7 +2,7 @@
   <arg name="mav_name" default="iris"/>
   <arg name="command_input" default="2" />
   <arg name="gazebo_simulation" default="true" />
-  <arg name="max_acc" default="5.0" />
+  <arg name="max_acc" default="2.0" />
   <arg name="init_pos_x" default="0.0" />
   <arg name="init_pos_y" default="0.0" />
   <arg name="init_pos_z" default="2.0" />

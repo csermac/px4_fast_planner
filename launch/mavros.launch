@@ -12,12 +12,12 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris_depth_camera"/>
-    <arg name="world" default="/home/csermac/.gazebo/worlds/small_house.world"/>
+    <arg name="world" default="/home/csermac/.gazebo/worlds/outdoor_village.world"/>
     <arg name="sdf" default="/home/csermac/.gazebo/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 
     <!-- added from px4/posix_sitl.launch -->
     <!-- <env name="PX4_SIM_MODEL" value="$(arg vehicle)" /> -->
-    <env name="PX4_SIM_MODEL" value="iris" />
+    <env name="PX4_SIM_MODEL" value="iris_vision" />
     <env name="PX4_ESTIMATOR" value="$(arg est)" />
 
     <!-- gazebo configs -->

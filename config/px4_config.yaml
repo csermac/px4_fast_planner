@@ -181,12 +181,12 @@ fake_gps:
   satellites_visible: 5   # virtual number of visible satellites
   fix_type: 3             # type of GPS fix (default: 3D)
   tf:
-    listen: false
-    send: false           # send TF?
-    frame_id: "map"       # TF frame_id
-    child_frame_id: "fix" # TF child_frame_id
-    rate_limit: 10.0      # TF rate
-  gps_rate: 5.0           # GPS data publishing rate
+    listen: true
+    send: false                     # send TF?
+    frame_id: "map"                 # TF frame_id
+    child_frame_id: "base_link_frd" # TF child_frame_id
+    rate_limit: 10.0                # TF rate
+  gps_rate: 30.0                    # GPS data publishing rate
 
 # landing_target
 landing_target:
