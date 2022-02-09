@@ -41,14 +41,14 @@ class RepubMav():
         output.header = from_vslam.header
         output.header.stamp = rospy.Time.now()
 
-        output.pose.position.x = -from_vslam.pose.pose.position.x
-        output.pose.position.y = -from_vslam.pose.pose.position.z
+        output.pose.position.x = from_vslam.pose.pose.position.x
+        output.pose.position.y = from_vslam.pose.pose.position.z
         output.pose.position.z = from_vslam.pose.pose.position.y
 
-        output.pose.orientation.x = -from_vslam.pose.pose.orientation.x
-        output.pose.orientation.y = -from_vslam.pose.pose.orientation.z
-        output.pose.orientation.z = -from_vslam.pose.pose.orientation.y
-        output.pose.orientation.w = -from_vslam.pose.pose.orientation.w
+        output.pose.orientation.x = from_vslam.pose.pose.orientation.x
+        output.pose.orientation.y = from_vslam.pose.pose.orientation.z
+        output.pose.orientation.z = from_vslam.pose.pose.orientation.y
+        output.pose.orientation.w = from_vslam.pose.pose.orientation.w
 
         self.pub.publish(output)
         self.pub_cam.publish(output)
