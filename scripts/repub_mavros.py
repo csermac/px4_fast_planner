@@ -28,21 +28,28 @@ class RepubMav():
                     found = True
                 else:
                     rospy.loginfo("topics not found, yet")
-                    rospy.sleep(0.1)
+                    rospy.sleep(0.5)
 
         self.sub = rospy.Subscriber('/run_localization/camera_pose', Odometry, self.repub, queue_size=1)
         rospy.loginfo("subscriber to found topic created")
 
     def repub(self, from_vslam):
-        output = PoseStamped()
 
-        pos = from_vslam.pose.pose.position
+        output = PoseStamped()
 
         output.header = from_vslam.header
         output.header.stamp = rospy.Time.now()
 
-        output.pose.position = from_vslam.pose.pose.position
-        output.pose.orientation = -from_vslam.pose.pose.orientation
+        output.pose.position.x = from_vslam.pose.pose.position.x
+        output.pose.position.y = from_vslam.pose.pose.position.z
+        output.pose.position.z = -from_vslam.pose.pose.position.y
+
+        output.pose.orientation.x = from_vslam.pose.pose.orientation.x
+        output.pose.orientation.y = from_vslam.pose.pose.orientation.z
+        output.pose.orientation.z = -from_vslam.pose.pose.orientation.y
+        output.pose.orientation.w = from_vslam.pose.pose.orientation.w
+
+
 
         self.pub.publish(output)
 

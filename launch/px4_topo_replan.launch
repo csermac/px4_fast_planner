@@ -30,10 +30,10 @@
     <arg name="cloud_topic" value="/camera/depth/"/>
 
     <!-- intrinsic params of the depth camera gazebo model 640x480 -->
-    <arg name="cx" value="320.5"/>
-    <arg name="cy" value="240.5"/>
-    <arg name="fx" value="343.49636753580074"/>
-    <arg name="fy" value="343.49636753580074"/>
+    <arg name="fx" value="520"/>
+    <arg name="fy" value="520"/>
+    <arg name="cx" value="320"/>
+    <arg name="cy" value="250"/>
 
 
 
