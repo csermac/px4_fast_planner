@@ -95,7 +95,7 @@
     <include file="$(find px4_fast_planner)/launch/rviz.launch" />
 
 
-    <remap from="/camera/pose" to="/run_slam/camera_pose"/>
+    <!-- <remap from="/camera/pose" to="/run_slam/camera_pose"/> -->
 
 	<!-- <node pkg="px4_fast_planner" name="republisher_from_openvslam" type="repub_mavros.py" output="screen" > -->
 	<!-- </node> -->
