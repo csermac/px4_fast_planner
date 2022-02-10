@@ -16,8 +16,8 @@
     <arg name="camera_pose_topic" default="/camera/pose"/>
     <arg name="depth_topic" default="/camera/depth/image_raw"/>
 
-    <arg name="max_vel" default="3.0" />
-    <arg name="max_acc" default="5.0" />
+    <arg name="max_vel" default="1.0" />
+    <arg name="max_acc" default="3.0" />
 
     <!-- Initial drone's position in Gazebo -->
     <arg name="init_pos_x" default="-2.0" />
@@ -80,11 +80,11 @@
 
     <!-- Camera pose publisher -->
     <!-- This node publishes tf from parent_frame to child_frame -->
-    <node pkg="px4_fast_planner" name="camera_pose_publisher" type="camera_pose_publisher.py" output="screen"> 
-       <param name="parent_frame" value="world" /> 
-       <param name="child_frame" value="camera_link" /> 
-       <param name="pose_topic" value="camera/pose" /> 
-    </node> 
+    <!-- <node pkg="px4_fast_planner" name="camera_pose_publisher" type="camera_pose_publisher.py" output="screen">  -->
+    <!--    <param name="parent_frame" value="world" />  -->
+    <!--    <param name="child_frame" value="camera_link" />  -->
+    <!--    <param name="pose_topic" value="camera/pose" />  -->
+    <!-- </node>  -->
 
     <node pkg="px4_fast_planner" name="traj_msg_converter" type="trajectory_msg_converter.py" output="screen">
         <param name="fast_planner_traj_topic" value="planning/ref_traj"/>

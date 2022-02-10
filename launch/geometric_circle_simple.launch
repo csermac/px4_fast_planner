@@ -38,8 +38,8 @@
   </node>
 
   <!-- another suitable initial position for the outdoor world, so there's space for a circle -->
-  <arg name="init_pos_x" default="8.0" />
-  <arg name="init_pos_y" default="2.5" />
+  <arg name="init_pos_x" default="4.0" />
+  <arg name="init_pos_y" default="7.5" />
   <!-- Launch rqt_reconfigure -->
   <!-- <node pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" name="rqt_reconfigure" /> -->
 
